@@ -1,0 +1,8 @@
+NGOS_Mymensingh Excel file link:
+https://docs.google.com/spreadsheets/d/1BEoVz8t0Jzj8cryADvieELwLoJz32cne1LsVtccg7nw/edit?usp=sharing
+
+1. nmp init 
+2. folder Structure
+3. .env & gitignore
+4. install dependencies 
+5. model >> continue
