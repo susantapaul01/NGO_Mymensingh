@@ -1,8 +1,15 @@
-NGOS_Mymensingh Excel file link:
+NGO_Mymensingh Excel file link:
 https://docs.google.com/spreadsheets/d/1BEoVz8t0Jzj8cryADvieELwLoJz32cne1LsVtccg7nw/edit?usp=sharing
 
 1. nmp init 
 2. folder Structure
 3. .env & gitignore
-4. install dependencies 
-5. model >> continue
+4. install dependencies
+5. config & env setup
+6. mongodb Atlus database connection
+7. model.Schema                                >> continue                   
+8. controllers
+    => userControllers
+9. api router
+10. postman setup
+11. 
