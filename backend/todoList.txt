@@ -7,7 +7,7 @@ https://docs.google.com/spreadsheets/d/1BEoVz8t0Jzj8cryADvieELwLoJz32cne1LsVtccg
 4. install dependencies
 5. config & env setup
 6. mongodb Atlus database connection
-7. model.Schema                                >> continue                   
+7. model & Schema                 
 8. controllers
     => userControllers
 9. api router

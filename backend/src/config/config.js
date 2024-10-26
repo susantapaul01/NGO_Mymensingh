@@ -1,5 +1,6 @@
 export const DATABASE = "mongodb+srv://susanta:susanta1992@cluster0.ji377.mongodb.net/ngo_mymensing?retryWrites=true&w=majority&appName=Cluster0"
 export const PORT = 5050
+export const ORIGIN_HOST_SITE = 'http://localhost:5050/v1'
 
 // Token
 export const JWT_KEY = "Y-w95@4WyBaCfw$" // Clients key

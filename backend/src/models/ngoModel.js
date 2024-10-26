@@ -1,11 +1,11 @@
 import mongoose from "mongoose";
 const dataSchema = new mongoose.Schema(
     {
-        // userId: {
-        //     type: mongoose.Schema.Types.ObjectId, // Reference type
-        //     ref: 'userModel', // Reference to the User model
-        //     required: true,
-        // },
+        userId: {
+            type: mongoose.Schema.Types.ObjectId, // Reference type
+            ref: 'userModel', // Reference to the User model
+            required: true,
+        },
         nameinBangla: {
             type: String,
             required: true,
@@ -52,12 +52,12 @@ const dataSchema = new mongoose.Schema(
         },
         photo: {
             type: String,
-        },
+        }
     },
     {
         timestamps: true,
         versionKey: false
     }
 )
-const userdetailsModel = mongoose.model('userdetails', dataSchema);
-export default userdetailsModel;
+const ngoModel = mongoose.model('ngos', dataSchema);
+export default ngoModel;

@@ -5,7 +5,7 @@ import rateLimit from 'express-rate-limit';
 import helmet from "helmet";
 import cookieParser from 'cookie-parser';
 import { DATABASE, MAX_JSON_SIZE, PORT, REQUEST_NUMBER, REQUEST_TIME_LIMIT, URL_INCODE, WEB_CASH } from './src/config/config.js';
-
+import router from './src/routers/api.js';
 
 const app = express();
 
@@ -22,6 +22,7 @@ app.use(express.json({ limit: MAX_JSON_SIZE }));
 app.use(express.urlencoded({ extended: URL_INCODE }));
 app.set('etag', WEB_CASH);
 
+app.use('/v1', router);
 
 mongoose.connect(DATABASE, { 
     autoIndex: true
