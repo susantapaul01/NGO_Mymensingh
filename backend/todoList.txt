@@ -9,7 +9,12 @@ https://docs.google.com/spreadsheets/d/1BEoVz8t0Jzj8cryADvieELwLoJz32cne1LsVtccg
 6. mongodb Atlus database connection
 7. model & Schema                 
 8. controllers
-    => userControllers
+    => userControllers (Registration, Login, Profile-read, profile-update, Logout)
 9. api router
 10. postman setup
 11. 
+
+*** Next TODO ***
+1. Password Hashing
+2. Create a admin and admin profile
+3. admin authentication 

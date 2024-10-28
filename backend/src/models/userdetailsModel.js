@@ -3,7 +3,6 @@ const dataSchema = new mongoose.Schema(
     {
         userId: {
             type: mongoose.Schema.Types.ObjectId, // Reference type
-            ref: 'userModel', // Reference to the User model
             required: true,
         },
         nid: {
