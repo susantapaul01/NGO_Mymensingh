@@ -3,13 +3,14 @@ const router = express.Router();
 
 import * as userController from "../controllers/userController.js";
 import * as ngoController from "../controllers/ngoController.js";
-import authMiddleware from "../middleware/authMiddleware.js";
+import { authenticateToken, authorizeAdmin } from "../middleware/authMiddleware.js";
 
 // User API URL
 router.post('/registration', userController.Registration);
 router.post('/login', userController.Login);
-router.get('/userprofile-view', authMiddleware, userController.UserProfileRead);
-router.post('/userprofile-update', authMiddleware, userController.UserProfileUpdate);
+router.get('/profile/me', authenticateToken, userController.singleProfileRead);
+router.get('/profile/users', authenticateToken, authorizeAdmin, userController.usersProfileRead);
+router.post('/profile-update', authenticateToken, userController.UserProfileUpdate);
 router.post('/logout', userController.Logout);
 
 
