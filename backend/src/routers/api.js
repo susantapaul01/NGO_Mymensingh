@@ -11,17 +11,19 @@ router.post('/login', userController.Login);
 router.post('/email-verity', userController.EmailVerify);
 router.post('/otp-verity/:email', userController.OTPVerity);
 router.post('/password-reset/:email/:otp', userController.ResetPassword);
+router.post('/logout', userController.Logout);
+// Profile 
 router.get('/profile/me', authenticateToken, userController.singleProfileRead);
 router.get('/profile/users', authenticateToken, authorizeAdmin, userController.usersProfileRead);
 router.post('/profile-update', authenticateToken, userController.UserProfileUpdate);
-router.post('/logout', userController.Logout);
 
 
 // NGO API URL
-router.post('/create-ngo-profile', ngoController.CreateNgoProfile);
-router.post('/create-ngo-profile-details', ngoController.CreateNgoProfileDetails);
-router.post('/create-ngo-report', ngoController.CreateNgoReport);
-router.get('/bgo-profile-view', ngoController.NgoProfileview);
+router.post('/create-ngo-profile', authenticateToken, ngoController.CreateNgoProfile);
+router.post('/create-ngo-profile-details/:ngoId', authenticateToken, ngoController.CreateNgoProfileDetails);
+router.get('/ngo-profile-view', authenticateToken, ngoController.NgoProfileview);
+router.post('/create-ngo-report/:ngoId', authenticateToken, ngoController.CreateNgoReport);
+router.get('/view-monthly-report/:ngoId/:reportId', authenticateToken, ngoController.viewreportByreportId);
 
 
 export default router;

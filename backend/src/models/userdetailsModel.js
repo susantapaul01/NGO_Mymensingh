@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 const dataSchema = new mongoose.Schema(
     {
         userId: {
-            type: mongoose.Schema.Types.ObjectId, // Reference type
+            type: mongoose.Schema.Types.ObjectId, // Reference type "users"
             required: true,
         },
         nid: {

@@ -155,16 +155,16 @@ export const ResetPassword = async (req, res) => {
 export const UserProfileUpdate = async (req, res) => {
     try {
         // let email = req.headers['email'];
-        let user_id = req.headers['user_id'];
+        let user_id = new ObjectId(req.headers['user_id']);
         let userData = req.body;
         let result = await userdetailsModel.updateOne(
             { 'userId': user_id },
             { $set:  userData },
             { upsert: true, new: true}
         )
-        console.log(result);
+        // console.log(result);
         return res.json({
-            status: 'success', message: "User Profile Update Successful"
+            status: 'success', message: "User Profile Update Successful", result: result
         })
     }
     catch(e) {
