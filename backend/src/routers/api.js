@@ -8,6 +8,9 @@ import { authenticateToken, authorizeAdmin } from "../middleware/authMiddleware.
 // User API URL
 router.post('/registration', userController.Registration);
 router.post('/login', userController.Login);
+router.post('/email-verity', userController.EmailVerify);
+router.post('/otp-verity/:email', userController.OTPVerity);
+router.post('/password-reset/:email/:otp', userController.ResetPassword);
 router.get('/profile/me', authenticateToken, userController.singleProfileRead);
 router.get('/profile/users', authenticateToken, authorizeAdmin, userController.usersProfileRead);
 router.post('/profile-update', authenticateToken, userController.UserProfileUpdate);

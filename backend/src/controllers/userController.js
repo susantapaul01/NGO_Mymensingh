@@ -3,6 +3,8 @@ import userdetailsModel from "../models/userdetailsModel.js";
 import userModel from "../models/userModel.js";
 import { TokenEncode } from "../utils/tokenUtils.js";
 import bcrypt from "bcrypt";
+import otpModel from "../models/otpModel.js";
+import { SendEmailOTP } from "../utils/emailSend.js";
 const { ObjectId } = mongoose.Types;
 
 //=== Create User
@@ -68,6 +70,81 @@ export const Logout = async (req, res) => {
     try {
         res.clearCookie('Token');
         res.status(200).json({ message: 'Successfully logged out.' });
+    }
+    catch(e) {
+        return res.json({ status: 'fail', message: e.toString()});
+    }
+}
+
+// ===== Send OTP for Email Verify
+export const EmailVerify = async (req, res) => {
+    try {
+        let { email } = req.body;
+        let user = await userModel.findOne({ 'email': email});
+        if(user===null) {
+            res.status(200).json({ status: true, message: 'User Email dose not Exist' });
+        }
+        else {
+            let otp = Math.floor( 100000 + Math.random()* 900000);
+            await otpModel.updateOne(
+                { 'email': email},
+                { 'otp': otp, 'status': 1 },
+                { upsert: true, new: true}
+            )
+            // console.log(req.body)
+            let emailTo = email;
+            let emailSubject = 'Email verification OTP';
+            let emailText = `Your OTP is ${otp}`;
+            let SendEmail = await SendEmailOTP(emailTo, emailSubject, emailText);
+            // console.log(SendEmail)
+            res.status(200).json({ status: true, message: 'Send OTP successful', OTP: otp, SendEmail: SendEmail });
+        }
+    }
+    catch(e) {
+        return res.json({ status: 'fail', message: e.toString()});
+    }
+}
+
+// ===== OTP Verity
+export const OTPVerity = async (req, res) => {
+    try {
+        let email = req.params['email'];
+        let otp = parseInt(req.body.otp);
+        let result = await otpModel.findOne({ email: email, otp: otp })
+        // console.log(result);
+        if(!result) {
+            res.status(200).json({ message: 'Incorrect Email or OTP' });
+        }
+        else {
+            res.status(200).json({ message: 'OTP is correct. Now you can change your password.', data: result });
+        }
+    }
+    catch(e) {
+        return res.json({ status: 'fail', message: e.toString()});
+    }
+}
+
+
+// ===== OTP Verity
+export const ResetPassword = async (req, res) => {
+    try {
+        let email = req.params['email'];
+        let otp = parseInt(req.params['otp']);
+        let password = req.body.password;
+        let salt = 10;
+        let result = await otpModel.findOne({ email: email, otp: otp })
+        if(result) {
+            let hashPassword = await bcrypt.hash(password, salt);
+            let resetPassword = await userModel.updateOne(
+                {'email': email},
+                {'password': hashPassword}
+            );
+            await otpModel.updateOne(
+                { 'email': email},
+                { 'otp': 0, 'status': 0}
+            )
+            res.status(200).json({ status: 'success', message: 'Password reset successful', result: resetPassword });
+        }
     }
     catch(e) {
         return res.json({ status: 'fail', message: e.toString()});
@@ -165,7 +242,7 @@ export const usersProfileRead = async (req, res) => {
             return res.status(200).json({ message: "No User Found" });
         }
         // console.log(result)
-        return res.status(200).json({ message: "Profile Read successful", result: result});
+        return res.status(200).json({ status: 'success', message: "Profile Read successful", result: result});
     }
     catch(e) {
         return res.json({ status: 'fail', message: e.toString()});

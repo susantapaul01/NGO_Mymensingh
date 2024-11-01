@@ -13,7 +13,7 @@ const dataSchema = new mongoose.Schema(
             default: 0, 
             required: true 
         },
-        otpstatus: {
+        status: {
             type: Number, 
             default: 0
         }

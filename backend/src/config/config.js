@@ -26,3 +26,12 @@ export const EMAIL_USER = "mern_ostad@themesoft69.com"
 export const EMAIL_PASSWORD = "h4e24DFTj6v)"
 export const EMAIL_UN_AUTH = false
 
+
+// Email configuration Mr Rabbil
+// export const EMAIL_HOST = "mail.teamrabbil.com"
+// export const EMAIL_PORT = 25
+// export const EMAIL_SECURITY = false
+// export const EMAIL_USER = "info@teamrabbil.com"
+// export const EMAIL_PASSWORD = "~sR4[bhaC[Qs"
+// export const EMAIL_UN_AUTH = false
+
