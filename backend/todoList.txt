@@ -21,3 +21,4 @@ https://docs.google.com/spreadsheets/d/1BEoVz8t0Jzj8cryADvieELwLoJz32cne1LsVtccg
 4. admin authentication                 > done
 5. monthly report submit                > done
 6. view-monthly-report/:ngoId/:reportId
+7. Ngoreportcontroller
